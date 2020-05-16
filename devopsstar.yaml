@@ -1,0 +1,24 @@
+---
+- name: Creating directory , creating a file, copy to /opt
+  hosts: monitor 
+  tasks:
+   - name: Creating a dir devops
+     file: 
+      path: "{{ dirpath }}" 
+      state: directory
+   - name: create a group called devops
+     group:
+      name: devops
+      state: present
+   - name: Creating a file under devops
+     file:
+      path: "{{ filepath }}"
+      state: touch
+      owner: ansible
+      group: devops
+   - name: Copy devopsstart file to /opt in monitor servers
+     copy:
+      src: "{{ filepath }}"
+      dest: "{{ optpath }}"
+      remote_src: yes
+...

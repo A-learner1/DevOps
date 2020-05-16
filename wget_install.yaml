@@ -1,0 +1,14 @@
+---
+- name: install wget if ntp is installed
+  hosts: db
+  tasks:
+  - name: check if wget is installed
+    command: rpm -qa ntp
+    register: output
+  - debug:
+     var: output
+  - name: install wget
+    yum:
+     name: wget
+     state: present
+    when: output.stdout != "" 

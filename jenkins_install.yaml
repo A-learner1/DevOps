@@ -1,0 +1,5 @@
+---
+- name: Install Jenkins using role
+  hosts: node4
+  roles: 
+    - jenkins

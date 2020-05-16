@@ -1,0 +1,6 @@
+---
+- name: role to install git
+  hosts: all
+  roles:
+   - git
+...   

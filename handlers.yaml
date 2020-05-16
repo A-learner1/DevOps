@@ -1,0 +1,21 @@
+---
+- name: Installing tree package and restart the daemon once the config is edited
+  hosts: monitor
+  tasks: 
+   - name: Install tree
+     yum: 
+      name: tree
+      state: latest
+   - name: Change config file of tree
+     copy:
+      content: |
+       "Hey tree package is installed"
+      dest: /opt/tree.conf
+     notify: 
+      - daemon restart
+  handlers:
+   - name: daemon restart
+     service:
+      name: httpd 
+      state: restarted
+...

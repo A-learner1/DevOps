@@ -1,0 +1,5 @@
+---
+- name: Install Jenkins usign roles
+  hosts: node4
+  roles:
+    - jenkins

@@ -1,0 +1,19 @@
+---
+- name: configuration using copy and template
+  hosts: db
+  tasks:
+  - name: create a file
+    copy:
+     content: |
+      Hey this is a new file
+     dest: /tmp/hosts
+  - name: overwrite the file with actual config
+    copy:
+     src: /home/ansible/dev/newcatfile.j2
+     #.j2 with copy will still copy the exact content
+     dest: /tmp/hosts
+  - name: copy config value
+    template:
+     src: /home/ansible/dev/newcatfile
+     dest: /tmp/hosts
+...

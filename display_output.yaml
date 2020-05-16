@@ -1,0 +1,11 @@
+---
+- name: display the output
+  hosts: all
+  tasks: 
+  - name: intslling package
+    yum:
+     name: tree
+     state: present
+    register: output
+  - debug:
+     var: output

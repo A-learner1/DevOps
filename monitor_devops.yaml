@@ -1,0 +1,35 @@
+---
+- name: Create "devops" user with password
+  hosts: monitor
+  vars_files:
+  - vault.yml
+  tasks:
+  - name: create user
+    user:
+     name: devops
+     comment: devops user
+     password: "{{ pw_devops | password_hash('sha512')}}"
+  - name: create devopstest.yaml with content
+    copy: 
+     content: |
+      ---
+      - name : printing helloworld
+        hosts: localhost
+        tasks: 
+         - name: creating a file helloworld
+           command: echo "helloworld"
+           register: out
+         - debug: 
+            msg: out.stdout
+     dest: /home/devops/devops.yaml
+  - name: create a template devopstest.j2 containing meminfo, processorinfo, biosinfo
+    template:
+     src: /home/ansible/dev/devopstest.j2
+     dest: /home/devops/devopstest2
+  - name: Print the contents of devopstest2
+    command: cat /home/devops/devopstest2
+    register: output
+  - debug:
+     var: output.stdout_lines
+     
+...    

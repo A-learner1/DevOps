@@ -1,0 +1,6 @@
+---
+- name: install httpd via roles in all servers
+  hosts: all
+  roles:
+   - import
+  

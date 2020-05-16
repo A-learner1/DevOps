@@ -1,0 +1,6 @@
+---
+- name: Tsk to create role and install wget, ntp and copy content 
+  hosts: db 
+  roles:
+   - installwgetntp
+  

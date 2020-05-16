@@ -1,0 +1,11 @@
+[db]
+node3
+[monitor]
+node4
+[wegrow:children]
+db
+monitor
+[monitor:vars]
+dirpath=/home/ansible/devops
+filepath=/home/ansible/devops/devopsstar
+optpath=/opt

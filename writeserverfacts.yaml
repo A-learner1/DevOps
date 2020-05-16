@@ -1,0 +1,16 @@
+---
+- name: Create host file in all servers with facts in it
+  hosts: all
+  vars: 
+    destpath: /opt/hosts
+  tasks:
+   - name: create host file in all servers
+     copy:
+      content: |
+       ipaddress =  {{ansible_default_ipv4.address}}
+       Fully qualified domain name =  {{ansible_fqdn}}
+       Hostname = {{ansible_hostname}}
+      dest: "{{ destpath }}"            
+...
+
+     

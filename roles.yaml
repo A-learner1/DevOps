@@ -1,0 +1,5 @@
+---
+- name: creating role to install wget, ntp, then copy file and restart
+  hosts: monitor
+  roles: 
+   -
